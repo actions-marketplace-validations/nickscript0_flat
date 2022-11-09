@@ -25,7 +25,9 @@ async function run(): Promise<void> {
   let shouldMask = false // by default we don't mask the source
   let sourceMasked = ''
   if (isHTTPConfig(config)) {
+    core.info('await fetchHTTP', config)
     filename = await fetchHTTP(config)
+    core.info('await fetchHTTP complete, filename', filename)
     source = config.http_url
 
     // if including a mask config then we can strip out secrets from the http_url
